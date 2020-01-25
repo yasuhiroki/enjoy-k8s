@@ -10,6 +10,7 @@ spec:
       protocol: "TCP"
       port: 5050
       targetPort: 5050
+      nodePort: 30050
   selector:
     app: api
 ---
