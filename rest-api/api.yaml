@@ -8,8 +8,8 @@ spec:
   ports:
     - name: "http-port"
       protocol: "TCP"
-      port: 5050
-      targetPort: 5050
+      port: 80
+      targetPort: 80
       nodePort: 30050
   selector:
     app: api
@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: rest
-          image: vad1mo/hello-world-rest:latest
+          image: yasuhiroki/nc-server:latest
           ports:
-            - containerPort: 5050
+            - containerPort: 80
 
