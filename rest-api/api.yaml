@@ -33,4 +33,28 @@ spec:
           image: yasuhiroki/nc-server:latest
           ports:
             - containerPort: 80
+          resources:
+            limits:
+              cpu: "1"
+            requests:
+              cpu: "0.5"
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-hpa
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 50 # CPU使用率が常に50%になるように指定
+
 
